@@ -1,0 +1,113 @@
+<div class="zoom-gallery">
+    <div data-slide-id="zoom" class="zoom-gallery-slide active">
+        <a href="https://magictoolbox.sirv.com/images/magiczoomplus/nike-01.jpg" class="MagicZoom" id="zoom-v">
+            <img src="https://magictoolbox.sirv.com/images/magiczoomplus/nike-01.jpg?scale.width=400"/>
+        </a>
+    </div>
+    <div data-slide-id="video-1" class="zoom-gallery-slide video-slide">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/J91IcJE6Clg" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div data-slide-id="video-2" class="zoom-gallery-slide video-slide">
+        <iframe src="https://player.vimeo.com/video/134250658?byline=0&amp;portrait=0" width="475" height="267" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+    <div class="selectors">
+        <a data-slide-id="zoom" class="active" href="https://magictoolbox.sirv.com/images/magiczoomplus/nike-01.jpg" data-image="https://magictoolbox.sirv.com/images/magiczoomplus/nike-01.jpg?scale.width=400" data-zoom-id="zoom-v">
+            <img src="https://magictoolbox.sirv.com/images/magiczoomplus/nike-01.jpg?scale.width=75"/>
+        </a>
+        <a data-slide-id="zoom" href="https://magictoolbox.sirv.com/images/magiczoomplus/nike-02.jpg" data-image="https://magictoolbox.sirv.com/images/magiczoomplus/nike-02.jpg?scale.width=400" data-zoom-id="zoom-v">
+            <img src="https://magictoolbox.sirv.com/images/magiczoomplus/nike-02.jpg?scale.width=75"/>
+        </a>
+        <a data-slide-id="zoom" href="https://magictoolbox.sirv.com/images/magiczoomplus/nike-03.jpg" data-image="https://magictoolbox.sirv.com/images/magiczoomplus/nike-03.jpg?scale.width=400" data-zoom-id="zoom-v">
+            <img src="https://magictoolbox.sirv.com/images/magiczoomplus/nike-03.jpg?scale.width=75"/>
+        </a>
+        <a data-slide-id="video-1" href="#">
+            <span class="glyphicon glyphicon-play"></span>
+            <img src="http://i1.ytimg.com/vi/J91IcJE6Clg/1.jpg"/>
+        </a>
+        <a data-slide-id="video-2" href="#">
+            <span class="glyphicon glyphicon-play"></span>
+            <img src="http://i.vimeocdn.com/video/527672867_100x75.jpg"/>
+        </a>
+    </div>
+</div>
+
+<script>
+    jQuery('.zoom-gallery .selectors a').on('click touch', function(e) {
+        var iframe = jQuery('.active iframe[src*="youtube"],.active iframe[src*="vimeo"]');
+        if (iframe.length) {
+            iframe.attr('src',iframe.attr('src'));
+        }
+        jQuery('.zoom-gallery .zoom-gallery-slide').removeClass('active');
+        jQuery('.zoom-gallery .selectors a').removeClass('active');
+        jQuery('.zoom-gallery .zoom-gallery-slide[data-slide-id="'+jQuery(this).attr('data-slide-id')+'"]').addClass('active');
+        jQuery(this).addClass('active');
+        e.preventDefault();
+    });
+</script>
+
+<style type="text/css">
+    .zoom-gallery { 
+        text-align: 10%; 
+    }
+    .zoom-gallery-slide { 
+        display: none; 
+    }
+    .zoom-gallery-slide.active { 
+        display: block; 
+    }
+    .zoom-gallery .video-slide {
+        position:relative;
+        padding-bottom:56.25%;
+        padding-top:30px;
+        height:0;
+        overflow:hidden;
+    }
+    .zoom-gallery .video-slide iframe, 
+    .zoom-gallery .video-slide object,
+    .zoom-gallery .video-slide embed {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+    }
+    .zoom-gallery .selectors { 
+        text-align: center; 
+        margin:10px 0; 
+    }
+    .zoom-gallery .selectors a { 
+        margin:5px; 
+        border:1px solid transparent; 
+        display: inline-block; 
+    }
+    .zoom-gallery .selectors a:hover,
+    .zoom-gallery .selectors a.active { 
+        border-color: #ccc; 
+    }
+    .zoom-gallery .selectors img { 
+        box-shadow: none !important; 
+        filter:none !important; 
+        -webkit-filter: none !important;
+        height: 75px;
+    }
+    .zoom-gallery .selectors a[data-slide-id=video-1],
+    .zoom-gallery .selectors a[data-slide-id=video-2] { 
+        position: relative;
+    }
+    .zoom-gallery .selectors a[data-slide-id=video-1] img,
+    .zoom-gallery .selectors a[data-slide-id=video-2] img { 
+        opacity: 0.8;
+    }
+    .zoom-gallery .selectors a span {
+        position: absolute;
+        color:#fff;
+        text-shadow: 0px 1px 10px #000;
+        top:50%;
+        left:50%;
+        display: inline-block;
+        transform:translateY(-50%) translateX(-50%); 
+        -webkit-transform:translateY(-50%) translateX(-50%);
+        font-size:30px;
+        z-index: 100;
+    }
+</style>
